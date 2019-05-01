@@ -15,7 +15,7 @@ $diepte = $_POST["diepte"];
 ?>
 <script>
 
-var hoek = 30;
+var hoek = -30;
 var lengte = prompt ('Vul lengte in','lengte');
 var breedte = prompt ('Vul breedte in','breedte');
 var tegelrand = prompt ('Vul de breedte van de rand in','tegelrand');
@@ -37,9 +37,14 @@ if(lengtePlusTegels>=breedtePlusTegels){
 }
 else {
     schaal = 500/breedtePlusTegels
-
 }
 
+if(omhulLengte>=omhulBreedte){
+    omhulschaal = 500/omhulLengte
+}
+else {
+    omhulschaal = 500/omhulBreedte
+}
 
 //variabelen voor blauwe rechthoek
 var nieuwebreedte = schaal * breedte;
@@ -53,8 +58,8 @@ var vertimargePlusTegels = (600-nieuwebreedtePlustegels)/2;
 var horimargePlustegels = (600-nieuwelengtePlustegels)/2;
 
 //variabelen voor omtrek
-var nieuweOmhulBreedte = schaal * omhulBreedte;
-var nieuweOmhulLengte = schaal * omhulLengte;
+var nieuweOmhulBreedte = omhulschaal * omhulBreedte;
+var nieuweOmhulLengte = omhulschaal * omhulLengte;
 var vertimargeOmhul = (600-nieuweOmhulBreedte)/2;
 var horimargeOmhul = (600-nieuweOmhulLengte)/2;
 
@@ -73,10 +78,11 @@ var canvas = document.getElementById("myCanvas");
 
 var cty = canvas.getContext("2d");
 cty.font = "16px Arial";
+cty.lineWidth = 0.5;
 cty.fillStyle = "#666677";
 cty.fillText(voettekst, 50, 580);
 cty.fillRect(horimargePlustegels,vertimargePlusTegels,nieuwelengtePlustegels,nieuwebreedtePlustegels);
-cty.strokeRect(50,50,500,500);//geeft tekengebied aan
+cty.strokeRect(vertimargeOmhul,horimargeOmhul,nieuweOmhulBreedte,nieuweOmhulLengte);//geeft omhulgebied aan
 // ctx.translate(horimarge,vertimarge)
 var ctx = canvas.getContext("2d");
 ctx.fillStyle = "#0000FF";
