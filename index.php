@@ -5,6 +5,8 @@
 style="border:1px solid #c3c3c3;">
 Your browser does not support the canvas element.
 </canvas>
+<p>Buitenste vierkant is grens canvas</p>
+<p>Binnenste vierkant is tekengedeelte, grootste maat wordt gelijk aan tekengedeelte</p>
 <br>
 <?php
 $lengte = $_POST["lengte"];
@@ -68,24 +70,27 @@ var tekst5 = ", breedte inclusief randen is ";
 var tekst6 = ".";
 var voettekst =tekst4.concat(lengtePlusTegels,tekst5,breedtePlusTegels,tekst6);
 var canvas = document.getElementById("myCanvas");
-var ctx = canvas.getContext("2d");
 
 var cty = canvas.getContext("2d");
-
-
 cty.font = "16px Arial";
+
+
 cty.fillStyle = "#666677";
-cty.fillText(horimargeOmhul, 50, 580);
-ctx.fillText(vertimargeOmhul, 50,20);
-ctx.strokeRect(vertimargeOmhul,horimargeOmhul,nieuweOmhulBreedte,nieuweOmhulLengte);
+cty.fillText(voettekst, 50, 580);
+
+// ctx.strokeRect(vertimargeOmhul,horimargeOmhul,nieuweOmhulBreedte,nieuweOmhulLengte);
 // ctx.translate(vertimargeOmhul,horimargeOmhul);
 
 
 // cty.rotate(hoek*Math.PI /180);
 cty.fillRect(horimargePlustegels,vertimargePlusTegels,nieuwelengtePlustegels,nieuwebreedtePlustegels);
-
+cty.strokeRect(50,50,500,500);
 // ctx.translate(horimarge,vertimarge)
+var ctx = canvas.getContext("2d");
 ctx.fillStyle = "#0000FF";
+
+ctx.font = "16px Arial";
+ctx.fillText(koptekst, 50,20);
 
 ctx.fillRect((horimarge),(vertimarge),nieuwelengte,nieuwebreedte);
 // ctx.strokeRect(50,50,500,500);
