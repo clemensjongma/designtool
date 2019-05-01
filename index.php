@@ -19,7 +19,7 @@ var hoek = 30;
 var lengte = prompt ('Vul lengte in','lengte');
 var breedte = prompt ('Vul breedte in','breedte');
 var tegelrand = prompt ('Vul de breedte van de rand in','tegelrand');
-// var verhouding = lengte / breedte;
+
 var lengtePlusTegels = parseInt(lengte) + 2*parseInt(tegelrand);
 var breedtePlusTegels = parseInt(breedte) + 2*parseInt(tegelrand);
 var verhoudingInclTegels = lengtePlusTegels / breedtePlusTegels;//zou eigenlijk ook verhouding kunnen heten
@@ -73,36 +73,27 @@ var canvas = document.getElementById("myCanvas");
 
 var cty = canvas.getContext("2d");
 cty.font = "16px Arial";
-
-
 cty.fillStyle = "#666677";
 cty.fillText(voettekst, 50, 580);
-
-// ctx.strokeRect(vertimargeOmhul,horimargeOmhul,nieuweOmhulBreedte,nieuweOmhulLengte);
-// ctx.translate(vertimargeOmhul,horimargeOmhul);
-
-
-// cty.rotate(hoek*Math.PI /180);
 cty.fillRect(horimargePlustegels,vertimargePlusTegels,nieuwelengtePlustegels,nieuwebreedtePlustegels);
-cty.strokeRect(50,50,500,500);
+cty.strokeRect(50,50,500,500);//geeft tekengebied aan
 // ctx.translate(horimarge,vertimarge)
 var ctx = canvas.getContext("2d");
 ctx.fillStyle = "#0000FF";
-
 ctx.font = "16px Arial";
 ctx.fillText(koptekst, 50,20);
-
 ctx.fillRect((horimarge),(vertimarge),nieuwelengte,nieuwebreedte);
 // ctx.strokeRect(50,50,500,500);
 // ctx.font = "16px Arial";
 
 
 
-// ctx.fillText("breedte", 10,40); 
-// ctx.fillText("rand", 10,60);
-// ctx.fillText(lengte, 10,30);
-// ctx.fillText(breedte, 10,50); 
-// ctx.fillText(tegelrand, 10,70); 
+
+// ctx.strokeRect(vertimargeOmhul,horimargeOmhul,nieuweOmhulBreedte,nieuweOmhulLengte);
+// ctx.translate(vertimargeOmhul,horimargeOmhul);
+
+
+// cty.rotate(hoek*Math.PI /180);
 
 console.log(nieuweOmhulBreedte);
 </script>
