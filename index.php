@@ -9,15 +9,15 @@ Your browser does not support the canvas element.
 <p>Buitenste vierkant is grens canvas</p>
 <p>Grootste maat wordt bepalend voor schaal</p>
 <br>
-<p>Vooraanzicht</p>
-<canvas id="vooraanzicht" width="600" height="600"
-style="border:1px solid #c3c3c3;">
-Your browser does not support the canvas element.
-</canvas>
 
 <br>
 <p>Zijaanzicht</p>
 <canvas id="zijaanzicht" width="600" height="600"
+style="border:1px solid #c3c3c3;">
+Your browser does not support the canvas element.
+</canvas>
+<p>Vooraanzicht</p>
+<canvas id="vooraanzicht" width="600" height="600"
 style="border:1px solid #c3c3c3;">
 Your browser does not support the canvas element.
 </canvas>
