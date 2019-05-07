@@ -47,35 +47,53 @@ var voettekst =tekst4.concat(lengtePlus,tekst5,breedtePlus,tekst6);
 var canvas = document.getElementById("plattegrond");
 
 var cty = canvas.getContext("2d");
-cty.font = "16px Arial";
-cty.lineWidth = 0.5;
-cty.fillStyle = "#666677";
-cty.fillText(voettekst, 50, 580);
+cty.fillStyle = "#8e876f";
+cty.fillRect(0,0,600,600);//grond
+
+cty.fillStyle = "#666677"
 cty.fillRect(lengtemargeplus,breedtemargeplus,nwlengtePlus,nwbreedtePlus);
 
 var ctx = canvas.getContext("2d");
-ctx.fillStyle = "#3333FF";
 ctx.font = "16px Arial";
 ctx.fillText(koptekst, 50,20);
+
+ctx.fillStyle = "#01eff9";
+
 ctx.fillRect((lengtemarge),(breedtemarge),nwlengte,nwbreedte);
 
 var vooraanz = document.getElementById("vooraanzicht");
 var ctv = vooraanzicht.getContext("2d");
-ctv.fillStyle = "#7d765e";
-ctv.fillRect(0,dieptemarge,(600),(dieptemarge+nwdiepte));
-
-ctv.fillStyle = "#3333FF";
-
-ctv.fillRect(breedtemarge,dieptemarge,nwbreedte,nwdiepte);
+ctv.fillStyle = "#8e876f";
+ctv.fillRect(0,dieptemarge,(600),(dieptemarge+nwdiepte));//grond
 var ctw = vooraanzicht.getContext("2d");
 ctw.fillStyle = "#666677";
-ctw.fillRect(breedtemargeplus,dieptemarge,nwbreedtePlus,10);
+ctw.fillRect(breedtemargeplus,(dieptemarge),nwbreedtePlus,10);//rand
+
+var grd = ctv.createLinearGradient(0,(nwdiepte+dieptemarge),dieptemarge,0);
+grd.addColorStop(0,"#018fbf");
+grd.addColorStop(1,"#01eff9");
+// Fill with gradient
+
+
+ctv.fillStyle = grd;
+ctv.fillRect(breedtemarge,dieptemarge,nwbreedte,nwdiepte);//water
+
 
 var zijaanz = document.getElementById("zijaanzicht");
 var ctz = zijaanzicht.getContext("2d");
-ctz.fillStyle = "#7d765e";
-ctz.fillRect(0,dieptemarge,(600),(dieptemarge+nwdiepte))
-ctz.fillStyle = "#3333FF";
-ctz.fillRect(lengtemarge,dieptemarge,nwlengte,nwdiepte);
+ctz.fillStyle = "#8e876f";
+ctz.fillRect(0,dieptemarge,(600),(dieptemarge+nwdiepte))//grond
 ctz.fillStyle = "#666677";
-ctz.fillRect(lengtemargeplus,dieptemarge,nwlengtePlus,10);
+ctz.fillRect(lengtemargeplus,dieptemarge,nwlengtePlus,10);//tegels
+
+var grd = ctv.createLinearGradient(0,(nwdiepte+dieptemarge),dieptemarge,0);
+grd.addColorStop(0,"#018fbf");
+grd.addColorStop(1,"#01eff9");
+// Fill with gradient
+
+
+ctz.fillStyle = grd;
+
+
+ctz.fillRect(lengtemarge,dieptemarge,nwlengte,nwdiepte);//water
+
