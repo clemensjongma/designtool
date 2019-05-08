@@ -29,7 +29,7 @@ $lengte = $_POST["lengte"];
 $breedte = $_POST["breedte"];
 $diepte = $_POST["diepte"];
 ?>
-<script src="design.js"></script>;
+<script src="design.js"></script>
 </body>
 </html>
 
