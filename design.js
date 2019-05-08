@@ -1,7 +1,23 @@
-var lengte = prompt ('Vul lengte in','lengte');
-var breedte = prompt ('Vul breedte in','breedte');
-var tegelrand = prompt ('Vul de breedte van de rand in','tegelrand');
-var diepte = prompt ('Vul diepte in)','diepte');
+// var lengte = prompt ('Vul lengte in','lengte');
+// var breedte = prompt ('Vul breedte in','breedte');
+// var tegelrand = prompt ('Vul de breedte van de rand in','tegelrand');
+// var diepte = prompt ('Vul diepte in)','diepte');
+
+function inputVerwerking(){
+    var lengte = document.getElementById("lengte").value;
+    var breedte = document.getElementById("breedte").value;
+    var diepte = document.getElementById("diepte").value;
+    var tegelrand = document.getElementById("rand").value;
+    var marge = document.getElementById("marge").value;
+
+
+    // document.getElementById("resLen").innerHTML = lengte;
+    // document.getElementById("resDiep").innerHTML = diepte;
+    // document.getElementById("resRand").innerHTML = tegelrand;
+    // document.getElementById("resBre").innerHTML = breedte;
+    // document.getElementById("resMar").innerHTML = marge;
+
+    
 var lengtePlus = parseInt(lengte) + 2*parseInt(tegelrand);
 var breedtePlus = parseInt(breedte) + 2*parseInt(tegelrand);
 
@@ -97,3 +113,4 @@ ctz.fillRect(lengtemargeplus,dieptemarge,nwlengtePlus,10);//tegels
 ctz.fillStyle = grd;//gradient
 ctz.fillRect(lengtemarge,dieptemarge,nwlengte,nwdiepte);//water
 
+}
