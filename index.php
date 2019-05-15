@@ -11,7 +11,7 @@
     <button onclick="inputVerwerking()">Submit</button>
 
    
-    <p>Resultaat lengte =
+    <p>Resultaat breedte =</p>
     <p id="demo"></p>
 
 <p>Plattegrond</p>
