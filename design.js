@@ -5,11 +5,11 @@
 
 function inputVerwerking()
     {
-        var lengte = document.getElementById("lengte").value;
-        var breedte = document.getElementById("breedte").value;
-        var diepte = document.getElementById("diepte").value;
-        var tegelrand = document.getElementById("rand").value;
-        var marge = document.getElementById("marge").value;
+        lengte = document.getElementById("lengte").value;//var is niet nodig binnen functie
+        breedte = document.getElementById("breedte").value;
+        diepte = document.getElementById("diepte").value;
+        tegelrand = document.getElementById("rand").value;
+        marge = document.getElementById("marge").value;
     
 
 
@@ -55,15 +55,7 @@ function inputVerwerking()
 
 
 
-            var tekst1 = "Gekozen lengte is ";
-            var tekst2 = ", gekozen breedte is ";
-            var tekst3 = ", gekozen rand is ";
-            var koptekst = tekst1.concat(lengte, tekst2,breedte, tekst3, tegelrand);
 
-            var tekst4 = "Lengte inclusief randen is ";
-            var tekst5 = ", breedte inclusief randen is ";
-            var tekst6 = ".";
-            var voettekst =tekst4.concat(lengtePlus,tekst5,breedtePlus,tekst6);
 
             var canvas = document.getElementById("plattegrond");
             var cty = canvas.getContext("2d");
@@ -72,8 +64,7 @@ function inputVerwerking()
             cty.fillStyle = "#666677"
             cty.fillRect(lengtemargeplus,breedtemargeplus,nwlengtePlus,nwbreedtePlus);//rand
             var ctx = canvas.getContext("2d");
-            ctx.font = "16px Arial";
-            ctx.fillText(koptekst, 50,20);
+            
             ctx.fillStyle = "#01eff9";
             ctx.fillRect((lengtemarge),(breedtemarge),nwlengte,nwbreedte);//water
 
@@ -91,6 +82,7 @@ function inputVerwerking()
                 var grd = ctv.createLinearGradient(0,(nwdiepte+dieptemarge),0,dieptemarge);
                 grd.addColorStop(0,"#018fbf");
                 grd.addColorStop(1,"#01eff9");
+                ctv.globalAlpha = 0.8;//transparantie
                 ctv.fillStyle = grd;
                 ctv.fillRect(breedtemarge,dieptemarge,nwbreedte,nwdiepte);//water
 
@@ -103,7 +95,10 @@ function inputVerwerking()
                     ctz.fillRect(0,dieptemarge,(600),(dieptemarge+nwdiepte));//grond
                     ctz.fillStyle = "#666677";
                     ctz.fillRect(lengtemargeplus,dieptemarge,nwlengtePlus,10);//tegels
+                    ctz.globalAlpha = 0.8;//transparantie
                     ctz.fillStyle = grd;//gradient
                     ctz.fillRect(lengtemarge,dieptemarge,nwlengte,nwdiepte);//water
 
-    }
+                      
+                }
+                document.getElementById("demo").innerHTML = breedte.value;   //buiten de functie!
