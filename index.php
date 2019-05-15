@@ -8,7 +8,7 @@
     <input type="text" id="rand"=> is rand</input><br>
     <input type="text" id="marge"=> is marge</input><br>
 
-    <button onclick="inputVerwerking()">Submit</button>
+    <button onclick="toonResultaat()">Submit</button>
 
    
     <p>Resultaat breedte =</p>

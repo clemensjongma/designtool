@@ -3,6 +3,16 @@
 // var tegelrand = prompt ('Vul de breedte van de rand in','tegelrand');
 // var diepte = prompt ('Vul diepte in)','diepte');
 
+function toonResultaat(){
+        inputVerwerking();
+        bepaalSchaal();
+        berekenGegevens();
+        maakTekening();
+
+
+}
+
+
 function inputVerwerking()
     {
         lengte = document.getElementById("lengte").value;//var is niet nodig binnen functie
@@ -20,13 +30,14 @@ function inputVerwerking()
     // document.getElementById("resMar").innerHTML = marge;
 
     
-        var lengtePlus = parseInt(lengte) + 2*parseInt(tegelrand);
-        var breedtePlus = parseInt(breedte) + 2*parseInt(tegelrand);
-
+        lengtePlus = parseInt(lengte) + 2*parseInt(tegelrand);
+        breedtePlus = parseInt(breedte) + 2*parseInt(tegelrand);
+    }
 
 
     //heeft lengte of breedte of diepte de grootste afmeting
     //grootste afmeting wordt 500px
+    function bepaalSchaal(){
 
             if(lengtePlus>=breedtePlus && lengtePlus>=diepte){
                 schaal = 500/lengtePlus
@@ -37,26 +48,28 @@ function inputVerwerking()
                     else {
                         schaal = 500/diepte 
                     }
+                }
 
+    function berekenGegevens(){        
             //variabelen voor blauwe rechthoek
-            var nwbreedte = schaal * breedte;
-            var nwlengte = schaal * lengte;
-            var breedtemarge = (600-nwbreedte)/2;
-            var lengtemarge = (600-nwlengte)/2;
+            nwbreedte = schaal * breedte;
+            nwlengte = schaal * lengte;
+            breedtemarge = (600-nwbreedte)/2;
+            lengtemarge = (600-nwlengte)/2;
             //variabelen voor grijze rechthoek
-            var nwbreedtePlus = schaal * breedtePlus;
-            var nwlengtePlus = schaal * lengtePlus;
-            var breedtemargeplus = (600-nwbreedtePlus)/2;
-            var lengtemargeplus = (600-nwlengtePlus)/2;
+            nwbreedtePlus = schaal * breedtePlus;
+            nwlengtePlus = schaal * lengtePlus;
+            breedtemargeplus = (600-nwbreedtePlus)/2;
+            lengtemargeplus = (600-nwlengtePlus)/2;
             //variabelen voor aanzichten
-            var nwdiepte = schaal * diepte;
-            var dieptemarge = (600-nwdiepte)/2;   
+            nwdiepte = schaal * diepte;
+            dieptemarge = (600-nwdiepte)/2;   
+    }
 
 
 
 
-
-
+    function maakTekening(){
             var canvas = document.getElementById("plattegrond");
             var cty = canvas.getContext("2d");
             cty.fillStyle = "#8e876f";
