@@ -5,6 +5,7 @@
 
 function toonResultaat(){
         inputVerwerking();
+        
         bepaalSchaal();
         berekenGegevens();
         maakTekening();
@@ -30,9 +31,14 @@ function inputVerwerking()
     // document.getElementById("resMar").innerHTML = marge;
 
     
-        lengtePlus = parseInt(lengte) + 2*parseInt(tegelrand);
-        breedtePlus = parseInt(breedte) + 2*parseInt(tegelrand);
+        lengtePlus = parseFloat(lengte) + 2*parseFloat(tegelrand);
+        breedtePlus = parseFloat(breedte) + 2*parseFloat(tegelrand);
     }
+// function inputVerwerkingPlus(waarde){
+//     waarde = document.getElementById("waarde").value;
+
+
+// }
 
 
     //heeft lengte of breedte of diepte de grootste afmeting
