@@ -8,7 +8,10 @@ function toonResultaat(){
         
         bepaalSchaal();
         berekenGegevens();
-        maakTekening();
+        maakPlattegrond();
+        maakVooraanzicht();
+        maakZijaanzicht();
+       
 
 
 }
@@ -69,43 +72,53 @@ function inputVerwerking()
             lengtemargeplus = (600-nwlengtePlus)/2;
             //variabelen voor aanzichten
             nwdiepte = schaal * diepte;
-            dieptemarge = (600-nwdiepte)/2;   
+            dieptemarge = (600-nwdiepte)/2;
+            nwmarge = schaal*marge; 
+    }
+
+    function tekenRechthoek(kl1,bgx,bgy,l,b){
+
+
     }
 
 
-
-
-    function maakTekening(){
-            var canvas = document.getElementById("plattegrond");
-            var cty = canvas.getContext("2d");
+    function maakPlattegrond(){
+            var platt = document.getElementById("plattegrond");
+            var cty = platt.getContext("2d");
             cty.fillStyle = "#8e876f";
             cty.fillRect(0,0,600,600);//grond
             cty.fillStyle = "#666677"
             cty.fillRect(lengtemargeplus,breedtemargeplus,nwlengtePlus,nwbreedtePlus);//rand
-            var ctx = canvas.getContext("2d");
+            var ctx = platt.getContext("2d");
             
             ctx.fillStyle = "#01eff9";
             ctx.fillRect((lengtemarge),(breedtemarge),nwlengte,nwbreedte);//water
+    }
 
-
-
+    function maakVooraanzicht(){
                 var vooraanz = document.getElementById("vooraanzicht");
                 var ctv = vooraanz.getContext("2d");
-                ctv.fillStyle = "#cceecc";
-                ctv.fillRect(0,0,600,600);//groen
-                ctv.fillStyle = "#8e876f";
-                ctv.fillRect(0,dieptemarge,(600),(dieptemarge+nwdiepte));//grond
+                ctv.fillStyle = "#cceecc";//groen
+                ctv.fillRect(0,0,600,600);
+                ctv.fillStyle = "#8e876f";//bruin
+                ctv.fillRect(0,dieptemarge,(600),(dieptemarge+nwdiepte));
                 var ctw = vooraanzicht.getContext("2d");
                 ctw.fillStyle = "#666677";
                 ctw.fillRect(breedtemargeplus,(dieptemarge),nwbreedtePlus,10);//rand
-                var grd = ctv.createLinearGradient(0,(nwdiepte+dieptemarge),0,dieptemarge);
+
+                
+                ctv.fillStyle = "#666677";
+                ctv.fillRect((breedtemarge-10),dieptemarge,(nwbreedte+20),(nwdiepte+10));//doorsnede
+                ctv.fillStyle = "#dddddd";
+                ctv.fillRect((breedtemarge),dieptemarge,(nwbreedte),(nwdiepte));//wand 
+                grd = ctv.createLinearGradient(0,(nwdiepte+dieptemarge+nwmarge),0,dieptemarge-nwmarge);
                 grd.addColorStop(0,"#018fbf");
                 grd.addColorStop(1,"#01eff9");
-                ctv.globalAlpha = 0.8;//transparantie
+                // ctv.globalAlpha = 0.8;//transparantie
                 ctv.fillStyle = grd;
-                ctv.fillRect(breedtemarge,dieptemarge,nwbreedte,nwdiepte);//water
-
-          
+                ctv.fillRect(breedtemarge,(dieptemarge+nwmarge),nwbreedte,(nwdiepte-nwmarge));//water
+    }
+     function maakZijaanzicht(){     
                     var zijaanz = document.getElementById("zijaanzicht");
                     var ctz = zijaanz.getContext("2d");
                     ctz.fillStyle = "#cceecc";
@@ -114,9 +127,16 @@ function inputVerwerking()
                     ctz.fillRect(0,dieptemarge,(600),(dieptemarge+nwdiepte));//grond
                     ctz.fillStyle = "#666677";
                     ctz.fillRect(lengtemargeplus,dieptemarge,nwlengtePlus,10);//tegels
-                    ctz.globalAlpha = 0.8;//transparantie
+                    
+                    ctz.fillStyle = "#666677";
+                    ctz.fillRect((lengtemarge-10),dieptemarge,(nwlengte+20),(nwdiepte+10));//doorsnede
+
+                    ctz.fillStyle = "#dddddd";
+                    ctz.fillRect(lengtemarge,dieptemarge,nwlengte,nwdiepte);//wand
+                    
+                    // ctz.globalAlpha = 0.8;//transparantie
                     ctz.fillStyle = grd;//gradient
-                    ctz.fillRect(lengtemarge,dieptemarge,nwlengte,nwdiepte);//water
+                    ctz.fillRect(lengtemarge,(dieptemarge+nwmarge),nwlengte,(nwdiepte-nwmarge));//water
 
                       
                 }

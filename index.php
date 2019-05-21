@@ -21,14 +21,14 @@ Your browser does not support the canvas element.
 </canvas>
 <br>
 <br>
-<p>Vooraanzicht</p>
+<p>Dwarsdoorsnede </p>
 <canvas id="vooraanzicht" width="600" height="600"
 style="border:1px solid #c3c3c3;">
 Your browser does not support the canvas element.
 </canvas>
 <br>
 <br>
-<p>Zijaanzicht</p>
+<p>Lengtedoorsnede</p>
 <canvas id="zijaanzicht" width="600" height="600"
 style="border:1px solid #c3c3c3;">
 Your browser does not support the canvas element.
