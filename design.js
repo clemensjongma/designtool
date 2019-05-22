@@ -4,13 +4,13 @@
 // var diepte = prompt ('Vul diepte in)','diepte');
 
 function toonResultaat(){
-        inputVerwerking();
-        
-        bepaalSchaal();
-        berekenGegevens();
-        maakPlattegrond();
-        maakVooraanzicht();
-        maakZijaanzicht();
+            inputVerwerking();
+            
+            bepaalSchaal();
+            berekenGegevens();
+            maakPlattegrond();
+            maakVooraanzicht();
+            maakZijaanzicht();
        
 
 
@@ -23,7 +23,7 @@ function inputVerwerking()
         breedte = document.getElementById("breedte").value;
         diepte = document.getElementById("diepte").value;
         tegelrand = document.getElementById("rand").value;
-        marge = document.getElementById("marge").value;
+        marge = document.getElementById("marge").value;//afstand water tot bovenkant zwembad
     
 
 
@@ -76,47 +76,84 @@ function inputVerwerking()
             nwmarge = schaal*marge; 
     }
 
-    function tekenRechthoek(kl1,bgx,bgy,l,b){
-
+    function tekenRechthoek(ctx,kl1,bgx,bgy,l,b){
+            ctx.fillStyle = kl1;
+            ctx.fillRect(bgx,bgy,l,b);
 
     }
+
+    function tekenGradRechthoek(ctx,kl1,kl2,bgx,bgy,l,b){
+            
+        grd = ctx.createLinearGradient(bgx,bgy,bgx,(bgy+b));//verticaal verloop
+        grd.addColorStop(0,kl1);
+        grd.addColorStop(1,kl2);
+        ctx.fillStyle = grd;
+        ctx.fillRect(bgx,bgy,l,b);
+            
+    }
+
+    function tekenDiagGradRechthoek(ctx,kl1,kl2,bgx,bgy,l,b){
+            
+        grd = ctx.createLinearGradient(bgx+l,bgy,bgx,(bgy+b));//diagonaal verloop
+        grd.addColorStop(0,kl1);
+        grd.addColorStop(1,kl2);
+        ctx.fillStyle = grd;
+        ctx.fillRect(bgx,bgy,l,b);
+            
+    }
+
+
 
 
     function maakPlattegrond(){
             var platt = document.getElementById("plattegrond");
             var cty = platt.getContext("2d");
-            cty.fillStyle = "#8e876f";
-            cty.fillRect(0,0,600,600);//grond
-            cty.fillStyle = "#666677"
-            cty.fillRect(lengtemargeplus,breedtemargeplus,nwlengtePlus,nwbreedtePlus);//rand
-            var ctx = platt.getContext("2d");
             
-            ctx.fillStyle = "#01eff9";
-            ctx.fillRect((lengtemarge),(breedtemarge),nwlengte,nwbreedte);//water
-    }
+            tekenGradRechthoek(cty,"#8e876f","#8e876f",0,0,600,600);//grond
+            tekenGradRechthoek(cty,"#666677","#666677",lengtemargeplus,breedtemargeplus,nwlengtePlus,nwbreedtePlus);//vloer plus rand
+            // tekenRechthoek(cty,"#01eff9",lengtemarge,breedtemarge,nwlengte,nwbreedte);//water
+            tekenDiagGradRechthoek(cty,"#01eff9","#018fbf",lengtemarge,breedtemarge,nwlengte,nwbreedte);
+            // cty.fillStyle = "#8e876f";
+            // cty.fillRect(0,0,600,600);//grond
+            // cty.fillStyle = "#666677"
+            // cty.fillRect(lengtemargeplus,breedtemargeplus,nwlengtePlus,nwbreedtePlus);//rand
+    //         var ctx = platt.getContext("2d");
+            
+    //         ctx.fillStyle = "#01eff9";
+    //         ctx.fillRect((lengtemarge),(breedtemarge),nwlengte,nwbreedte);//water
+    // 
+            }
 
     function maakVooraanzicht(){
                 var vooraanz = document.getElementById("vooraanzicht");
                 var ctv = vooraanz.getContext("2d");
-                ctv.fillStyle = "#cceecc";//groen
-                ctv.fillRect(0,0,600,600);
-                ctv.fillStyle = "#8e876f";//bruin
-                ctv.fillRect(0,dieptemarge,(600),(dieptemarge+nwdiepte));
-                var ctw = vooraanzicht.getContext("2d");
-                ctw.fillStyle = "#666677";
-                ctw.fillRect(breedtemargeplus,(dieptemarge),nwbreedtePlus,10);//rand
+                // ctv.fillStyle = "#cceecc";//groen
+                // ctv.fillRect(0,0,600,600);
+                // ctv.fillStyle = "#8e876f";//bruin
+                // ctv.fillRect(0,dieptemarge,(600),(dieptemarge+nwdiepte));
+                // var ctw = vooraanzicht.getContext("2d");
+                // ctw.fillStyle = "#666677";
+                // ctw.fillRect(breedtemargeplus,(dieptemarge),nwbreedtePlus,10);//rand
 
                 
-                ctv.fillStyle = "#666677";
-                ctv.fillRect((breedtemarge-10),dieptemarge,(nwbreedte+20),(nwdiepte+10));//doorsnede
-                ctv.fillStyle = "#dddddd";
-                ctv.fillRect((breedtemarge),dieptemarge,(nwbreedte),(nwdiepte));//wand 
-                grd = ctv.createLinearGradient(0,(nwdiepte+dieptemarge+nwmarge),0,dieptemarge-nwmarge);
-                grd.addColorStop(0,"#018fbf");
-                grd.addColorStop(1,"#01eff9");
-                // ctv.globalAlpha = 0.8;//transparantie
-                ctv.fillStyle = grd;
-                ctv.fillRect(breedtemarge,(dieptemarge+nwmarge),nwbreedte,(nwdiepte-nwmarge));//water
+                // ctv.fillStyle = "#666677";
+                // ctv.fillRect((breedtemarge-10),dieptemarge,(nwbreedte+20),(nwdiepte+10));//doorsnede
+                // // ctv.fillStyle = "#dddddd";
+                // // ctv.fillRect((breedtemarge),dieptemarge,(nwbreedte),(nwdiepte));//wand 
+                tekenGradRechthoek(ctv,"#cceecc","#cceecc",0,0,600,dieptemarge);//groen
+                tekenGradRechthoek(ctv,"#8e876f","#8e876f",0,dieptemarge,600,(dieptemarge+nwdiepte));//bruin
+                tekenGradRechthoek(ctv,"#666677","#666677",breedtemargeplus,dieptemarge,nwbreedtePlus,10);//grijs
+                tekenGradRechthoek(ctv,"#666677","#666677",(breedtemarge-10),dieptemarge,nwbreedte+20,nwdiepte+10);//doorsnede
+
+
+                tekenGradRechthoek(ctv,"#dddddd","#dddddd",(breedtemarge),dieptemarge,(nwbreedte),(nwdiepte));//wand
+                tekenGradRechthoek(ctv,"#01eff9","#018fbf",breedtemarge,(dieptemarge+nwmarge),nwbreedte,(nwdiepte-nwmarge));//water
+                // grd = ctv.createLinearGradient(0,(nwdiepte+dieptemarge+nwmarge),0,dieptemarge-nwmarge);
+                // grd.addColorStop(0,"#018fbf");
+                // grd.addColorStop(1,"#01eff9");
+                // // ctv.globalAlpha = 0.8;//transparantie
+                // ctv.fillStyle = grd;
+                // ctv.fillRect(breedtemarge,(dieptemarge+nwmarge),nwbreedte,(nwdiepte-nwmarge));//water
     }
      function maakZijaanzicht(){     
                     var zijaanz = document.getElementById("zijaanzicht");
@@ -133,10 +170,10 @@ function inputVerwerking()
 
                     ctz.fillStyle = "#dddddd";
                     ctz.fillRect(lengtemarge,dieptemarge,nwlengte,nwdiepte);//wand
-                    
+                 tekenGradRechthoek(ctz,"#01eff9","#018fbf",lengtemarge,(dieptemarge+nwmarge),nwlengte,(nwdiepte-nwmarge));   
                     // ctz.globalAlpha = 0.8;//transparantie
-                    ctz.fillStyle = grd;//gradient
-                    ctz.fillRect(lengtemarge,(dieptemarge+nwmarge),nwlengte,(nwdiepte-nwmarge));//water
+                    // ctz.fillStyle = grd;//gradient
+                    // ctz.fillRect(lengtemarge,(dieptemarge+nwmarge),nwlengte,(nwdiepte-nwmarge));//water
 
                       
                 }
