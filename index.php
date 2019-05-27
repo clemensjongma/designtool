@@ -9,6 +9,7 @@
 </head>
 
 <body>
+<div class="parallax">
 <div class="container">
     <!-- <input type="text" id="lengte"=> is lengte</input><br>
     <input type="text" id="breedte"=> is breedte</input><br>
@@ -68,9 +69,11 @@
     <button onclick="toonResultaat()">Laat zien!</button>
 
 </div>   
-    <p>Resultaat breedte =</p>
-    <p id="demo"></p>
-<div class="container">
+    <!-- <p>Resultaat breedte =</p>
+    <p id="demo"></p> -->
+<br>
+<br>
+    <div class="container">
     <p>Plattegrond</p>
     <canvas id="plattegrond" width="600" height="600"
     style="border:1px solid #c3c3c3;">
@@ -101,7 +104,7 @@ Your browser does not support the canvas element.
 </div>
 <br>
 <br>
-
+</div>
 
 <?php
 $lengte = $_POST["lengte"];

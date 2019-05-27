@@ -37,7 +37,7 @@ button:hover {
 
 .container {
   border-radius: 5px;
-  background: rgba(244, 250, 244, 0.5);
+  background: rgba(244, 250, 244, 0.7);
   padding: 20px;
   width: 50%;
   margin: auto;
@@ -84,6 +84,7 @@ body{
   background-color: rgb(186, 236, 243);
   /* background-image: url("water.jpg"); */
   background-repeat: no-repeat;
+  
  
 }
 
@@ -94,14 +95,16 @@ body, html {
 
 .parallax {
   /* The image used */
-  background-image: url('water.jpg');
+  background-image: url('water_hockney2.png');
+  /* height: 100%; */
 
   /* Full height */
   /* height: 100%;  */
 
   /* Create the parallax scrolling effect */
   background-attachment: fixed;
-  background-position: center;
+  background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
+
 }
