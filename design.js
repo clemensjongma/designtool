@@ -11,6 +11,10 @@ function toonResultaat(){
             maakPlattegrond();
             maakVooraanzicht();
             maakZijaanzicht();
+            zetGegevensOmNaarTrap();
+            bepaalSchaalTrap();
+            berekenGegevensTrap();
+            maakIsomProjectie();
        
 
 
@@ -124,3 +128,33 @@ function inputVerwerking()
 
      
                 document.getElementById("demo").innerHTML = breedte.value;   //buiten de functie!
+
+    function zetGegevensOmNaarTrap(){
+        horiAfm=breedtePlus*(Math.cos(30*Math.PI/180))+lengtePlus*(Math.cos(30*Math.PI/180));
+        vertiAfm=parseFloat(diepte)+breedtePlus*(Math.sin(30*Math.PI/180))+lengtePlus*(Math.sin(30*Math.PI/180));
+        
+    }
+
+    function bepaalSchaalTrap(){
+            if (horiAfm >= vertiAfm){
+                schaalTrap = 500/horiAfm}
+            else {schaalTrap = 500/vertiAfm}
+
+    }
+    function berekenGegevensTrap(){
+        nwHoriAfm = schaalTrap * horiAfm;
+        nwVertiAfm = schaalTrap * vertiAfm;
+        breedtemargeTrap = (600-nwHoriAfm)/2;
+        lengtemargeTrap = (600-nwVertiAfm)/2;
+    }
+    function maakIsomProjectie(){
+        var isom = document.getElementById("isomproj");
+                var ctv = isom.getContext("2d");
+                tekenGradRechthoek(ctv,"#cceecc","#8e876f",0,0,600,600);
+                tekenGradRechthoek(ctv,"#dddddd","#dddddd",breedtemargeTrap,lengtemargeTrap,nwHoriAfm,(nwVertiAfm-nwdiepte));//trap
+                tekenGradRechthoek(ctv,"#123456","#123456",breedtemargeTrap,(lengtemargeTrap+(nwVertiAfm-nwdiepte)),nwHoriAfm,nwdiepte);//wand
+                // ctv.fillRect(breedtemargeTrap,lengtemargeTrap,nwHoriAfm,nwVertiAfm);
+                console.log (horiAfm);
+                console.log (vertiAfm);
+
+    }

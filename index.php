@@ -104,6 +104,19 @@ Your browser does not support the canvas element.
 </div>
 <br>
 <br>
+
+<div class="container">
+<p>Isometrische projectie </p>
+<canvas id="isomproj" width="600" height="600"
+style="border:1px solid #c3c3c3;">
+Your browser does not support the canvas element.
+</canvas>
+
+</div>
+<br>
+<br>
+</div>
+
 </div>
 
 <?php
