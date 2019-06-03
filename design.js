@@ -97,7 +97,7 @@ function inputVerwerking()
             
             tekenGradRechthoek(cty,"#cceecc","#cceecc",0,0,600,600);//grond
             tekenGradRechthoek(cty,"#666677","#666677",lengtemargeplus,breedtemargeplus,nwlengtePlus,nwbreedtePlus);//vloer plus rand
-            tekenDiagGradRechthoek(cty,"#01eff9","#018fbf",lengtemarge,breedtemarge,nwlengte,nwbreedte);
+            tekenDiagGradRechthoek(cty,"#01eff9","#018fbf",lengtemarge,breedtemarge,nwlengte,nwbreedte);//water
             }
 
     function maakZijaanzicht(){     
@@ -133,8 +133,9 @@ function inputVerwerking()
 
     function zetGegevensOmNaarIsom(){
         horiAfmPlus=breedtePlus*(Math.cos(30*Math.PI/180))+lengtePlus*(Math.cos(30*Math.PI/180));
-        vertiAfm=parseFloat(diepte)+breedtePlus*(Math.sin(30*Math.PI/180))+lengtePlus*(Math.sin(30*Math.PI/180));
-        
+        vertiAfm=parseFloat(diepte)+breedtePlus*(Math.sin(30*Math.PI/180))+lengtePlus*(Math.sin(30*Math.PI/180));//plus diepte
+        vertiAfmPlus=breedtePlus*(Math.sin(30*Math.PI/180))+lengtePlus*(Math.sin(30*Math.PI/180));//omschreven rechthoek
+        horiAfm=breedte*(Math.cos(30*Math.PI/180))+lengte*(Math.cos(30*Math.PI/180));
     }
 
     function bepaalSchaalIsom(){
@@ -146,34 +147,55 @@ function inputVerwerking()
     function berekenGegevensIsom(){
         nwhoriAfmPlus = schaalIsom * horiAfmPlus;
         nwVertiAfm = schaalIsom * vertiAfm;
+        nwVertiAfmPlus = schaalIsom * vertiAfmPlus;
+        nwHoriAfm = schaalIsom * horiAfm;
         nwDiepteIsometrie= schaalIsom*diepte
-        breedtemargeIsom = (600-nwhoriAfmPlus)/2;
+        breedtemargeIsomPlus = (600-nwhoriAfmPlus)/2;
+        lengtemargeIsomPLus = (600-nwVertiAfmPlus)/2;
         lengtemargeIsom = (600-nwVertiAfm)/2;
+        breedtemargeIsom = (600-nwHoriAfm)/2;
     }
     function maakIsomProjectie(){
 
-        var berSin = Math.sin(30*Math.PI/180);//sinus van 30 gr
-        var berCos = Math.cos(30*Math.PI/180);//cosinus van 30 gr
+        berSin = Math.sin(30*Math.PI/180);//sinus van 30 gr
+        berCos = Math.cos(30*Math.PI/180);//cosinus van 30 gr
 
 
         var isom = document.getElementById("isomproj");
                 var ctv = isom.getContext("2d");
-                ctv.translate(0,0);
-                tekenGradRechthoek(ctv,"#cceecc","#8e876f",0,0,600,600);
-                tekenGradRechthoek(ctv,"#dddddd","#dddddd",breedtemargeIsom,lengtemargeIsom,nwhoriAfmPlus,(nwVertiAfm-nwDiepteIsometrie));//Isomezium eigenlijk parr
-                tekenGradRechthoek(ctv,"#123456","#123456",breedtemargeIsom,(lengtemargeIsom+(nwVertiAfm-nwDiepteIsometrie)),nwhoriAfmPlus,nwDiepteIsometrie );//diepte
-                // ctv.fillRect(breedtemargeIsom,lengtemargeIsom,nwhoriAfmPlus,nwVertiAfm);
-                ctv.translate(breedtemargeIsom,lengtemargeIsom);//nulpunt verplaatst
-                // ctv.lineWidth = 10;
-                ctv.moveTo(0,schaalIsom*breedtePlus*(Math.sin(30*Math.PI/180)));
-                ctv.lineTo(schaalIsom*breedtePlus*(Math.cos(30*Math.PI/180)),0);
-                ctv.lineTo(nwhoriAfmPlus,schaalIsom*lengtePlus*(Math.sin(30*Math.PI/180)));
-                ctv.lineTo(schaalIsom*lengtePlus*(Math.cos(30*Math.PI/180)),nwVertiAfm-nwDiepteIsometrie);
-                ctv.closePath();
-                ctv.stroke();
                 
+                tekenGradRechthoek(ctv,"#cceecc","#8e876f",0,0,600,600);
+                tekenGradRechthoek(ctv,"#dddddd","#dddddd",breedtemargeIsomPlus,lengtemargeIsom,nwhoriAfmPlus,(nwVertiAfm-nwDiepteIsometrie));//Isomezium eigenlijk parr
+                tekenGradRechthoek(ctv,"#123456","#123456",breedtemargeIsomPlus,(lengtemargeIsom+(nwVertiAfm-nwDiepteIsometrie)),nwhoriAfmPlus,nwDiepteIsometrie );//diepte
+                // // ctv.fillRect(breedtemargeIsomPlus,lengtemargeIsom,nwhoriAfmPlus,nwVertiAfm);
+                // ctv.translate(breedtemargeIsomPlus,lengtemargeIsom);//nulpunt verplaatst
+                // // ctv.lineWidth = 10;
+                // ctv.moveTo(0,schaalIsom*breedtePlus*berSin);
+                // ctv.lineTo(schaalIsom*breedtePlus*berCos,0);
+                // ctv.lineTo(nwhoriAfmPlus,schaalIsom*lengtePlus*berSin);
+                // ctv.lineTo(schaalIsom*lengtePlus*berCos,nwVertiAfm-nwDiepteIsometrie);
+                // ctv.closePath();
+                // ctv.stroke();
+              
+                tekenRuit(ctv,breedtemargeIsomPlus,lengtemargeIsom,breedtePlus,lengtePlus);
+                // tekenRuit(ctv,(lengtemargeIsomPLus-lengtemargeIsom),(lengtemargeIsomPLus-lengtemargeIsom),breedte,lengte);
                 console.log (horiAfmPlus);
                 console.log (vertiAfm);
-                console.log (berSin);
+                console.log (schaal);
+                console.log (schaalIsom);
+
+    }
+    function tekenRuit(cti,bgx,bgy,br,le){
+                var horiAfmRechth=berCos*br+berCos*le;
+                var vertiAfmRechth=berSin*br+berSin*le;
+
+
+                cti.translate(bgx,bgy);
+                cti.moveTo(0,schaalIsom*br*berSin);
+                cti.lineTo(schaalIsom*berCos*br,0);
+                cti.lineTo( schaalIsom*horiAfmRechth,schaalIsom*berSin*le);
+                cti.lineTo(schaalIsom* le*berCos,schaalIsom*vertiAfmRechth);
+                cti.closePath();
+                cti.stroke();
 
     }
