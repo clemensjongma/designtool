@@ -62,7 +62,7 @@ function inputVerwerking()
             //variabelen voor aanzichten
             nwdiepte = schaal * diepte;
             dieptemarge = (600-nwdiepte)/2;
-            nwmarge = schaal*marge; 
+            nwmarge = schaal*marge;//afstand water-bovenkant zwembad
             }
 
     // function tekenRechthoek(ctx,kl1,bgx,bgy,l,b){
@@ -132,10 +132,13 @@ function inputVerwerking()
                 
 
     function zetGegevensOmNaarIsom(){
-        horiAfmPlus=breedtePlus*(Math.cos(30*Math.PI/180))+lengtePlus*(Math.cos(30*Math.PI/180));
-        vertiAfm=parseFloat(diepte)+breedtePlus*(Math.sin(30*Math.PI/180))+lengtePlus*(Math.sin(30*Math.PI/180));//plus diepte
-        vertiAfmPlus=breedtePlus*(Math.sin(30*Math.PI/180))+lengtePlus*(Math.sin(30*Math.PI/180));//omschreven rechthoek
-        horiAfm=breedte*(Math.cos(30*Math.PI/180))+lengte*(Math.cos(30*Math.PI/180));
+        berSin = Math.sin(30*Math.PI/180);//sinus van 30 gr
+        berCos = Math.cos(30*Math.PI/180);//cosinus van 30 gr
+        
+        horiAfmPlus=breedtePlus*(berCos)+lengtePlus*(berCos);
+        horiAfm=breedte*(berCos)+lengte*(berCos);
+        vertiAfmPlus=parseFloat(diepte)+breedtePlus*(berSin)+lengtePlus*(berSin);
+        vertiAfm=parseFloat(diepte)+breedte*(berSin)+lengte*(berSin);
     }
 
     function bepaalSchaalIsom(){
@@ -145,15 +148,19 @@ function inputVerwerking()
 
     }
     function berekenGegevensIsom(){
+        nwHoriAfm = schaalIsom * horiAfm;
         nwhoriAfmPlus = schaalIsom * horiAfmPlus;
         nwVertiAfm = schaalIsom * vertiAfm;
         nwVertiAfmPlus = schaalIsom * vertiAfmPlus;
-        nwHoriAfm = schaalIsom * horiAfm;
-        nwDiepteIsometrie= schaalIsom*diepte
-        breedtemargeIsomPlus = (600-nwhoriAfmPlus)/2;
-        lengtemargeIsomPLus = (600-nwVertiAfmPlus)/2;
-        lengtemargeIsom = (600-nwVertiAfm)/2;
+        
         breedtemargeIsom = (600-nwHoriAfm)/2;
+        breedtemargeIsomPlus = (600-nwhoriAfmPlus)/2;
+        
+        lengtemargeIsom = (600-nwVertiAfm)/2;
+        lengtemargeIsomPLus = (600-nwVertiAfmPlus)/2;
+
+        nwDiepteIsometrie= schaalIsom*diepte;
+        nwWaterMarge=schaalIsom*marge;
     }
     function maakIsomProjectie(){
 
@@ -164,10 +171,10 @@ function inputVerwerking()
         var isom = document.getElementById("isomproj");
                 var ctv = isom.getContext("2d");
                 
-                tekenGradRechthoek(ctv,"#cceecc","#8e876f",0,0,600,600);
-                tekenGradRechthoek(ctv,"#dddddd","#dddddd",breedtemargeIsomPlus,lengtemargeIsom,nwhoriAfmPlus,(nwVertiAfm-nwDiepteIsometrie));//Isomezium eigenlijk parr
-                tekenGradRechthoek(ctv,"#123456","#123456",breedtemargeIsomPlus,(lengtemargeIsom+(nwVertiAfm-nwDiepteIsometrie)),nwhoriAfmPlus,nwDiepteIsometrie );//diepte
-                // // ctv.fillRect(breedtemargeIsomPlus,lengtemargeIsom,nwhoriAfmPlus,nwVertiAfm);
+        tekenGradRechthoek(ctv,"#cceecc","#8e876f",0,0,600,600);
+        tekenGradRechthoek(ctv,"#dddddd","#dddddd",breedtemargeIsomPlus,lengtemargeIsomPLus,nwhoriAfmPlus,nwVertiAfmPlus);
+        tekenGradRechthoek(ctv,"#eeeeee","#eeeeee",breedtemargeIsom,lengtemargeIsom,nwHoriAfm,nwVertiAfm);
+        // // ctv.fillRect(breedtemargeIsomPlus,lengtemargeIsom,nwhoriAfmPlus,nwVertiAfm);
                 // ctv.translate(breedtemargeIsomPlus,lengtemargeIsom);//nulpunt verplaatst
                 // // ctv.lineWidth = 10;
                 // ctv.moveTo(0,schaalIsom*breedtePlus*berSin);
@@ -177,10 +184,14 @@ function inputVerwerking()
                 // ctv.closePath();
                 // ctv.stroke();
               
-                tekenRuit(ctv,breedtemargeIsomPlus,lengtemargeIsom,breedtePlus,lengtePlus);
-                tekenRuit(ctv,breedtemargeIsom,(lengtemargeIsomPLus),breedte,lengte);
-                console.log (schaal);
-                console.log (schaalIsom);
+                // tekenZeshoek(ctv,breedtemargeIsomPlus,lengtemargeIsomPLus,breedtePlus,lengtePlus,diepte);
+                tekenZeshoek(ctv,breedtemargeIsom,lengtemargeIsom,breedte,lengte,diepte);
+               
+                tekenRuit(ctv,breedtemargeIsomPlus,(lengtemargeIsomPLus),breedtePlus,lengtePlus);
+                tekenRuit(ctv,breedtemargeIsom,(lengtemargeIsom),breedte,lengte);
+                tekenRuit(ctv,breedtemargeIsom,(lengtemargeIsom+nwWaterMarge),breedte,lengte);
+                console.log (berSin);
+                console.log (berCos);
                 console.log (lengtemargeIsom);
                 console.log (lengtemargeIsomPLus);
 
@@ -200,3 +211,23 @@ function inputVerwerking()
                 cti.stroke();
 
     }
+
+    function tekenZeshoek(cti,bgx,bgy,br,le,dp){
+        var horiAfmRechth=berCos*br+berCos*le;
+        var vertiAfmRechth=berSin*br+berSin*le+parseFloat(dp);
+
+
+        cti.translate(bgx,bgy);
+        cti.moveTo(0,schaalIsom*br*berSin);
+        cti.lineTo(schaalIsom*berCos*br,0);
+        cti.lineTo(schaalIsom*horiAfmRechth,schaalIsom*berSin*le);
+        cti.lineTo(schaalIsom*horiAfmRechth,schaalIsom*(berSin*le+parseFloat(dp)));
+        cti.lineTo(schaalIsom*berCos*le,schaalIsom*vertiAfmRechth);
+        cti.lineTo(0,schaalIsom*(vertiAfmRechth-berSin*le));
+        
+        cti.closePath();
+        cti.stroke();
+        cti.translate(-bgx,-bgy);
+        
+
+}
