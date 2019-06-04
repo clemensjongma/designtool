@@ -178,11 +178,11 @@ function inputVerwerking()
                 // ctv.stroke();
               
                 tekenRuit(ctv,breedtemargeIsomPlus,lengtemargeIsom,breedtePlus,lengtePlus);
-                // tekenRuit(ctv,(lengtemargeIsomPLus-lengtemargeIsom),(lengtemargeIsomPLus-lengtemargeIsom),breedte,lengte);
-                console.log (horiAfmPlus);
-                console.log (vertiAfm);
+                tekenRuit(ctv,breedtemargeIsom,(lengtemargeIsomPLus),breedte,lengte);
                 console.log (schaal);
                 console.log (schaalIsom);
+                console.log (lengtemargeIsom);
+                console.log (lengtemargeIsomPLus);
 
     }
     function tekenRuit(cti,bgx,bgy,br,le){
@@ -196,6 +196,7 @@ function inputVerwerking()
                 cti.lineTo( schaalIsom*horiAfmRechth,schaalIsom*berSin*le);
                 cti.lineTo(schaalIsom* le*berCos,schaalIsom*vertiAfmRechth);
                 cti.closePath();
+                cti.translate(-bgx,-bgy);
                 cti.stroke();
 
     }
