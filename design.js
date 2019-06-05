@@ -189,11 +189,16 @@ function inputVerwerking()
               
                 // tekenZeshoek(ctv,breedtemargeIsomPlus,lengtemargeIsomPLus,breedtePlus,lengtePlus,diepte);
                
-                tekenZeshoek(ctv,breedtemargeIsom,lengtemargeIsom,breedte,lengte,diepte);
+                tekenZeshoek(ctv,breedtemargeIsom,lengtemargeIsom,breedte,lengte,diepte);//omtrek
+                tekenZeshoek(ctv,breedtemargeIsom,lengtemargeIsom,breedte,lengte,0);//binnenvorm
                 
-                tekenRuit(ctv,breedtemargeIsomPlus,(lengtemargeIsomPLus),breedtePlus,lengtePlus);
-                tekenRuit(ctv,breedtemargeIsom,(lengtemargeIsom),breedte,lengte);
-                tekenRuit(ctv,breedtemargeIsom,(lengtemargeIsom+nwWaterMarge),breedte,lengte);
+                tekenZeshoek(ctv,breedtemargeIsom,lengtemargeIsom+nwWaterMarge,breedte,lengte,0);//waternivo
+                tekenZeshoek(ctv,breedtemargeIsomPlus,lengtemargeIsomPLus,breedtePlus,lengtePlus,0);//tegelnivo
+                
+                
+                // tekenRuit(ctv,breedtemargeIsomPlus,(lengtemargeIsomPLus),breedtePlus,lengtePlus);
+                // tekenRuit(ctv,breedtemargeIsom,(lengtemargeIsom),breedte,lengte);
+                // tekenRuit(ctv,breedtemargeIsom,(lengtemargeIsom+nwWaterMarge),breedte,lengte);
                 // ctv.clearRect(0,0,300,300);
                 console.log (berSin);
                 console.log (berCos);
