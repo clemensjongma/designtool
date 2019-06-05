@@ -170,10 +170,13 @@ function inputVerwerking()
 
         var isom = document.getElementById("isomproj");
                 var ctv = isom.getContext("2d");
+               
+                
                 
         tekenGradRechthoek(ctv,"#cceecc","#8e876f",0,0,600,600);
         tekenGradRechthoek(ctv,"#dddddd","#dddddd",breedtemargeIsomPlus,lengtemargeIsomPLus,nwhoriAfmPlus,nwVertiAfmPlus);
         tekenGradRechthoek(ctv,"#eeeeee","#eeeeee",breedtemargeIsom,lengtemargeIsom,nwHoriAfm,nwVertiAfm);
+
         // // ctv.fillRect(breedtemargeIsomPlus,lengtemargeIsom,nwhoriAfmPlus,nwVertiAfm);
                 // ctv.translate(breedtemargeIsomPlus,lengtemargeIsom);//nulpunt verplaatst
                 // // ctv.lineWidth = 10;
@@ -185,11 +188,13 @@ function inputVerwerking()
                 // ctv.stroke();
               
                 // tekenZeshoek(ctv,breedtemargeIsomPlus,lengtemargeIsomPLus,breedtePlus,lengtePlus,diepte);
-                tekenZeshoek(ctv,breedtemargeIsom,lengtemargeIsom,breedte,lengte,diepte);
                
+                tekenZeshoek(ctv,breedtemargeIsom,lengtemargeIsom,breedte,lengte,diepte);
+                
                 tekenRuit(ctv,breedtemargeIsomPlus,(lengtemargeIsomPLus),breedtePlus,lengtePlus);
                 tekenRuit(ctv,breedtemargeIsom,(lengtemargeIsom),breedte,lengte);
                 tekenRuit(ctv,breedtemargeIsom,(lengtemargeIsom+nwWaterMarge),breedte,lengte);
+                // ctv.clearRect(0,0,300,300);
                 console.log (berSin);
                 console.log (berCos);
                 console.log (lengtemargeIsom);
@@ -200,8 +205,9 @@ function inputVerwerking()
                 var horiAfmRechth=berCos*br+berCos*le;
                 var vertiAfmRechth=berSin*br+berSin*le;
 
-
+                // cti.clearRect(0,0,600,600);
                 cti.translate(bgx,bgy);
+                cti.beginPath();
                 cti.moveTo(0,schaalIsom*br*berSin);
                 cti.lineTo(schaalIsom*berCos*br,0);
                 cti.lineTo( schaalIsom*horiAfmRechth,schaalIsom*berSin*le);
@@ -215,9 +221,10 @@ function inputVerwerking()
     function tekenZeshoek(cti,bgx,bgy,br,le,dp){
         var horiAfmRechth=berCos*br+berCos*le;
         var vertiAfmRechth=berSin*br+berSin*le+parseFloat(dp);
-
+     
 
         cti.translate(bgx,bgy);
+        cti.beginPath();
         cti.moveTo(0,schaalIsom*br*berSin);
         cti.lineTo(schaalIsom*berCos*br,0);
         cti.lineTo(schaalIsom*horiAfmRechth,schaalIsom*berSin*le);
