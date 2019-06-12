@@ -171,7 +171,7 @@ function inputVerwerking()
         var isom = document.getElementById("isomproj");
                 var ctv = isom.getContext("2d");
                
-                
+        ctv.clearRect(0,0,600,600);       
                 
         tekenGradRechthoek(ctv,"#cceecc","#8e876f",0,0,600,600);
         tekenGradRechthoek(ctv,"#dddddd","#dddddd",breedtemargeIsomPlus,lengtemargeIsomPLus,nwhoriAfmPlus,nwVertiAfmPlus);
@@ -188,16 +188,19 @@ function inputVerwerking()
                 // ctv.stroke();
               
                 // tekenZeshoek(ctv,breedtemargeIsomPlus,lengtemargeIsomPLus,breedtePlus,lengtePlus,diepte);
-               
-                tekenZeshoek(ctv,breedtemargeIsom,lengtemargeIsom,breedte,lengte,diepte);//omtrek
-                tekenZeshoek(ctv,breedtemargeIsom,lengtemargeIsom,breedte,lengte,0);//binnenvorm
                 
-                tekenZeshoek(ctv,breedtemargeIsom,lengtemargeIsom+nwWaterMarge,breedte,lengte,0);//waternivo
-                tekenZeshoek(ctv,breedtemargeIsomPlus,lengtemargeIsomPLus,breedtePlus,lengtePlus,0);//tegelnivo
+                tekenZeshoek(ctv,"#666699",breedtemargeIsom,lengtemargeIsom,breedte,lengte,diepte);//omtrek
+                tekenZeshoek(ctv,"grey",breedtemargeIsomPlus,lengtemargeIsomPLus,breedtePlus,lengtePlus,0);//tegels
+                tekenRuit(ctv,breedtemargeIsom,(lengtemargeIsom),breedte,lengte);//middengedeelte uitgegumd
+                tekenZeshoek(ctv,"#101010",breedtemargeIsom,lengtemargeIsom,breedte,lengte,0);//omtrek zonder diepte=tegelnivo
+                tekenZeshoek(ctv,"#d1e0e0",breedtemargeIsom,lengtemargeIsom,breedte,lengte,0);//binnenvorm
                 
+
+                tekenZeshoek(ctv,"blue",breedtemargeIsom,lengtemargeIsom+nwWaterMarge,breedte,lengte,0);//waternivo
+                // tekenZeshoek(ctv,"#111",breedtemargeIsom,lengtemargeIsom,breedte,0,diepte);
                 
                 // tekenRuit(ctv,breedtemargeIsomPlus,(lengtemargeIsomPLus),breedtePlus,lengtePlus);
-                // tekenRuit(ctv,breedtemargeIsom,(lengtemargeIsom),breedte,lengte);
+                
                 // tekenRuit(ctv,breedtemargeIsom,(lengtemargeIsom+nwWaterMarge),breedte,lengte);
                 // ctv.clearRect(0,0,300,300);
                 console.log (berSin);
@@ -206,7 +209,7 @@ function inputVerwerking()
                 console.log (lengtemargeIsomPLus);
 
     }
-    function tekenRuit(cti,bgx,bgy,br,le){
+    function tekenRuit(cti,bgx,bgy,br,le){//gebruik ik even om te gummen
                 var horiAfmRechth=berCos*br+berCos*le;
                 var vertiAfmRechth=berSin*br+berSin*le;
 
@@ -219,11 +222,11 @@ function inputVerwerking()
                 cti.lineTo(schaalIsom* le*berCos,schaalIsom*vertiAfmRechth);
                 cti.closePath();
                 cti.translate(-bgx,-bgy);
-                cti.stroke();
+                cti.clip();
 
     }
-
-    function tekenZeshoek(cti,bgx,bgy,br,le,dp){
+//kleuren moeten weg, eigenlijk
+    function tekenZeshoek(cti,kl,bgx,bgy,br,le,dp){
         var horiAfmRechth=berCos*br+berCos*le;
         var vertiAfmRechth=berSin*br+berSin*le+parseFloat(dp);
      
@@ -236,9 +239,10 @@ function inputVerwerking()
         cti.lineTo(schaalIsom*horiAfmRechth,schaalIsom*(berSin*le+parseFloat(dp)));
         cti.lineTo(schaalIsom*berCos*le,schaalIsom*vertiAfmRechth);
         cti.lineTo(0,schaalIsom*(vertiAfmRechth-berSin*le));
-        
+        cti.fillStyle=kl;
+        cti.fill();
         cti.closePath();
-        cti.stroke();
+        // cti.stroke();
         cti.translate(-bgx,-bgy);
         
 
