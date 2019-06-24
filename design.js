@@ -131,9 +131,9 @@ function inputVerwerking(){
     }
 
     function bepaalSchaalIsom(){
-            if (horiAfmPlus >= vertiAfm){
+            if (horiAfmPlus >= vertiAfmPlus){
                 schaalIsom = 500/horiAfmPlus}
-            else {schaalIsom = 500/vertiAfm}
+            else {schaalIsom = 500/vertiAfmPlus}
     }
 
     function berekenGegevensIsom(){
@@ -162,14 +162,14 @@ function inputVerwerking(){
                         ctv.clearRect(0,0,600,600);       
                 
                 tekenGradRechthoek(ctv,"#cceecc","#8e876f",0,0,600,600);
-                tekenZeshoek(ctv,"#d1e0e0",breedtemargeIsom,lengtemargeIsom,breedte,lengte,diepte);//binnenvorm alleen zichtbaar in uitgegumd gedeelte
-                tekenZeshoek(ctv,"#018fbf",breedtemargeIsom,lengtemargeIsom+nwWaterMarge,breedte,lengte,diepte-marge);//omtrek watervolume
-                tekenZeshoek(ctv,"#01eff9",breedtemargeIsom,lengtemargeIsom+nwWaterMarge,breedte,lengte,0);//waternivo
+                tekenZeshoek(ctv,"#d1e0e0",breedtemargeIsom,lengtemargeIsom,breedte,lengte,diepte);//achterste 2 wanden 
+                tekenZeshoek(ctv,"#018fbf",breedtemargeIsom,lengtemargeIsom+nwWaterMarge,breedte,lengte,diepte-marge);//watervolume
+                tekenZeshoek(ctv,"#01eff9",breedtemargeIsom,lengtemargeIsom+nwWaterMarge,breedte,lengte,0);//waternivo(bovenkant watervolume)
                 tekenZeshoek(ctv,"#666677",breedtemargeIsomPlus,lengtemargeIsomPLus,breedtePlus,lengtePlus,0);//tegels
                 tekenRuit(ctv,breedtemargeIsom,(lengtemargeIsom),breedte,lengte);//middengedeelte uitgegumd
-                tekenZeshoek(ctv,"#d1e0e0",breedtemargeIsom,lengtemargeIsom,breedte,lengte,diepte);//binnenvorm alleen zichtbaar in uitgegumd gedeelte
+                tekenZeshoek(ctv,"#d1e0e0",breedtemargeIsom,lengtemargeIsom,breedte,lengte,diepte);//achterste 2 wanden alleen zichtbaar in uitgegumd gedeelte
                 //tekenZeshoek(ctv,"#018fbf",breedtemargeIsom,lengtemargeIsom+nwWaterMarge,breedte,lengte,diepte-marge);//omtrek watervolume
-                tekenZeshoek(ctv,"#01eff9",breedtemargeIsom,lengtemargeIsom+nwWaterMarge,breedte,lengte,0);//waternivo
+                tekenZeshoek(ctv,"#01eff9",breedtemargeIsom,lengtemargeIsom+nwWaterMarge,breedte,lengte,0);//waternivo alleen zichtbaar in uitgegumd gedeelte
                 
                 
     }
