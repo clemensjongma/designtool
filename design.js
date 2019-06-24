@@ -162,11 +162,15 @@ function inputVerwerking(){
                         ctv.clearRect(0,0,600,600);       
                 
                 tekenGradRechthoek(ctv,"#cceecc","#8e876f",0,0,600,600);
-                tekenZeshoek(ctv,"#018fbf",breedtemargeIsom,lengtemargeIsom,breedte,lengte,diepte);//omtrek watervolume
+                tekenZeshoek(ctv,"#d1e0e0",breedtemargeIsom,lengtemargeIsom,breedte,lengte,diepte);//binnenvorm alleen zichtbaar in uitgegumd gedeelte
+                tekenZeshoek(ctv,"#018fbf",breedtemargeIsom,lengtemargeIsom+nwWaterMarge,breedte,lengte,diepte-marge);//omtrek watervolume
+                tekenZeshoek(ctv,"#01eff9",breedtemargeIsom,lengtemargeIsom+nwWaterMarge,breedte,lengte,0);//waternivo
                 tekenZeshoek(ctv,"#666677",breedtemargeIsomPlus,lengtemargeIsomPLus,breedtePlus,lengtePlus,0);//tegels
                 tekenRuit(ctv,breedtemargeIsom,(lengtemargeIsom),breedte,lengte);//middengedeelte uitgegumd
                 tekenZeshoek(ctv,"#d1e0e0",breedtemargeIsom,lengtemargeIsom,breedte,lengte,diepte);//binnenvorm alleen zichtbaar in uitgegumd gedeelte
+                //tekenZeshoek(ctv,"#018fbf",breedtemargeIsom,lengtemargeIsom+nwWaterMarge,breedte,lengte,diepte-marge);//omtrek watervolume
                 tekenZeshoek(ctv,"#01eff9",breedtemargeIsom,lengtemargeIsom+nwWaterMarge,breedte,lengte,0);//waternivo
+                
                 
     }
     
