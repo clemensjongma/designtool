@@ -4,9 +4,9 @@ function toonResultaat(){
             inputVerwerking();
             bepaalSchaal();
             berekenGegevens();
-            maakPlattegrond();
-            maakVooraanzicht();
-            maakZijaanzicht();
+            // maakPlattegrond();
+            // maakVooraanzicht();
+            // maakZijaanzicht();
             zetGegevensOmNaarIsom();
             bepaalSchaalIsom();
             berekenGegevensIsom();
@@ -159,7 +159,7 @@ function inputVerwerking(){
 
                 var isom = document.getElementById("isomproj");
                         var ctv = isom.getContext("2d");
-                        ctv.clearRect(0,0,600,600);       
+                          
                 
                 tekenGradRechthoek(ctv,"#cceecc","#8e876f",0,0,600,600);
                 tekenZeshoek(ctv,"#d1e0e0",breedtemargeIsom,lengtemargeIsom,breedte,lengte,diepte);//achterste 2 wanden 

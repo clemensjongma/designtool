@@ -73,7 +73,7 @@
     <p id="demo"></p> -->
 <br>
 <br>
-    <div class="container">
+    <!-- <div class="container">
     <p>Plattegrond</p>
     <canvas id="plattegrond" width="600" height="600"
     style="border:1px solid #c3c3c3;">
@@ -103,10 +103,10 @@ Your browser does not support the canvas element.
 
 </div>
 <br>
-<br>
+<br> -->
 
 <div class="container">
-<p>Isometrische projectie </p>
+<p>Opengewerkte isometrische projectie </p>
 <canvas id="isomproj" width="600" height="600"
 style="border:1px solid #c3c3c3;">
 Your browser does not support the canvas element.
