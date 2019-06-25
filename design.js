@@ -10,6 +10,7 @@ function toonResultaat(){
             zetGegevensOmNaarIsom();
             bepaalSchaalIsom();
             berekenGegevensIsom();
+        
             maakIsomProjectie();
  }
 
@@ -159,7 +160,9 @@ function inputVerwerking(){
 
                 var isom = document.getElementById("isomproj");
                         var ctv = isom.getContext("2d");
-                          
+                        ctv.setTransform(1, 0, 0, 1, 0, 0);
+// Will always clear the right space
+ctv.clearRect(0, 0, 600,600);  
                 
                 tekenGradRechthoek(ctv,"#cceecc","#8e876f",0,0,600,600);
                 tekenZeshoek(ctv,"#d1e0e0",breedtemargeIsom,lengtemargeIsom,breedte,lengte,diepte);//achterste 2 wanden 
@@ -210,3 +213,4 @@ function inputVerwerking(){
         
 
 }
+    
