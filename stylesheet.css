@@ -12,7 +12,15 @@ input[type=text], select, textarea {
   text-align: right;
   font-family: 'Roboto Condensed', sans-serif;
 }
-
+input[type=number], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  text-align: right;
+  font-family: 'Roboto Condensed', sans-serif;
+}
 label {
   padding: 12px 12px 12px 0;
   display: inline-block;
@@ -39,7 +47,7 @@ button:hover {
   border-radius: 5px;
   background: rgba(244, 250, 244, 0.7);
   padding: 20px;
-  width: 50%;
+  width: 100%;
   margin: auto;
   font-family: 'Roboto', sans-serif;
   
@@ -107,4 +115,22 @@ body, html {
   background-repeat: no-repeat;
   background-size: cover;
 
+}
+
+.column {
+  float: left;
+  width: 45%;
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
+  margin: 2.5%;
+  background-color: #ccccbb;
+  
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
 }
