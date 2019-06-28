@@ -4,9 +4,9 @@ function toonResultaat(){
             inputVerwerking();
             bepaalSchaal();
             berekenGegevens();
-            // maakPlattegrond();
-            // maakVooraanzicht();
-            // maakZijaanzicht();
+            maakPlattegrond();
+            maakVooraanzicht();
+            maakZijaanzicht();
             zetGegevensOmNaarIsom();
             bepaalSchaalIsom();
             berekenGegevensIsom();
@@ -163,7 +163,7 @@ function inputVerwerking(){
                         var ctv = isom.getContext("2d");
                         
                 
-                tekenGradRechthoek(ctv,"#cceecc","#8e876f",0,0,600,600);
+                tekenGradRechthoek(ctv,"#8e876f","#cceecc",0,0,600,600);
                 tekenZeshoek(ctv,"#d1e0e0",breedtemargeIsom,lengtemargeIsom,breedte,lengte,diepte);//achterste 2 wanden 
                 tekenZeshoek(ctv,"#018fbf",breedtemargeIsom,lengtemargeIsom+nwWaterMarge,breedte,lengte,diepte-marge);//watervolume
                 tekenZeshoek(ctv,"#01eff9",breedtemargeIsom,lengtemargeIsom+nwWaterMarge,breedte,lengte,0);//waternivo(bovenkant watervolume)

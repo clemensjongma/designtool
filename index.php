@@ -70,18 +70,57 @@
 <!-- <br>
 <br> -->
     
-<div class="column">
-<div class="container">
-<p>Opengewerkte isometrische projectie </p>
-<canvas id="isomproj" width="600" height="600"
-style="border:1px solid #c3c3c3;">
-Your browser does not support the canvas element.
-</canvas>
+        <div class="column">
+        <div class="container">
+        <p>Isometrie (opengewerkt) </p>
+        <canvas id="isomproj" width="600" height="600"
+        style="border:1px solid #c3c3c3;">
+        Your browser does not support the canvas element.
+        </canvas>
 
-</div>
-<br>
-<br>
-</div>
+        </div>
+        <br>
+        <br>
+        </div>
+
+        <div class="column">
+        <div class="container">
+        <p>Plattegrond </p>
+        <canvas id="plattegrond" width="600" height="600"
+        style="border:1px solid #c3c3c3;">
+        Your browser does not support the canvas element.
+        </canvas>
+
+        </div>
+        <br>
+        <br>
+        </div>
+
+        <div class="column">
+        <div class="container">
+        <p>Doorsnede</p>
+        <canvas id="vooraanzicht" width="600" height="600"
+        style="border:1px solid #c3c3c3;">
+        Your browser does not support the canvas element.
+        </canvas>
+
+        </div>
+        <br>
+        <br>
+        </div>
+
+        <div class="column">
+        <div class="container">
+        <p>Dwarsdoorsnede</p>
+        <canvas id="zijaanzicht" width="600" height="600"
+        style="border:1px solid #c3c3c3;">
+        Your browser does not support the canvas element.
+        </canvas>
+
+        </div>
+        <br>
+        <br>
+        </div>
 
 </div>
 
